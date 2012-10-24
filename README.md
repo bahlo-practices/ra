@@ -1,12 +1,11 @@
 General
+=========
+
+This repo contains all exercises for the practices in "Rechnerarchitektur".
+
+License
 =======
 
-I dont't know what to put in here. 
+This project is licensed under the WTFPL (<http://sam.zoy.org/wtfpl/>), for more information see LICENSE.txt
 
-Assembler FTW? No? Mh. 
-
-Rules
-=====
-
-- English code, english comments, english everything
-- Code that is not ready shall be marked with an underscore (_).
+**Please use this as an inspiration, not as an invitation to copy it. We don't want to have to justify our code.**
