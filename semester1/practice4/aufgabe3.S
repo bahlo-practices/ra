@@ -12,7 +12,7 @@ main:
 	stmfd sp!, {r4, r5, lr} @ Ruecksprungadresse und Register sichern
 kopieren:
 @ hier Ihr Programm zum Kopieren einer Byte-Tabelle (je 8Bit) in eine Word-Tabelle (je 32Bit) einfuegen
- 
+    
 
 
 vorzeichen:
