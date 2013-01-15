@@ -10,12 +10,12 @@
 @ so wird in R0 der Wert 0 zurueck geliefert.
 @ zeigt R1 auf einen leeren String so wird in R0 der Wert 0 zurueck gegeben
 
-@ Register-Übersicht
+@ Register-ï¿½bersicht
 @ r0 = zu durchsuchender string
 @ r1 = suchstring
-@ r2 = hitzähler
-@ r3 = zu durchsuchender string für loop
-@ r4 = zu durchsuchender string für innerloop
+@ r2 = hitzï¿½hler
+@ r3 = zu durchsuchender string fï¿½r loop
+@ r4 = zu durchsuchender string fï¿½r innerloop
 @ r5 = suchstring
 @ r6 = backup von r0
 @ r7 = backup von r1
@@ -32,13 +32,14 @@ searchStringInString:
 	STMFD r13!, {r4-r10}
 	
 	@ Variablen
-	MOV r2, #0 @ Hitzähler
+	MOV r2, #0 @ Hitzï¿½hler
 	
 	@ Beide Strings 
-	LDR r3, [r0] @ String nach r3 (8-Bit)
-	LDR r4, [r1] @ Suchstring nach R4 (8-Bit)
+	@ LDRB oder? War LDR
+	LDRB r3, [r0] @ String nach r3 (8-Bit)
+	LDRB r4, [r1] @ Suchstring nach R4 (8-Bit)
 	
-	@ Überprüfen, ob einer der Strings leer ist
+	@ ï¿½berprï¿½fen, ob einer der Strings leer ist
 	CMP r3, #0
 	BEQ end @ Wenn String leer, ende
 	CMP r4, #0
@@ -46,9 +47,9 @@ searchStringInString:
 	
 	MOV r6, r0 @ Zu durchsuchender String backup
 loop:
-	LDRB r3, [r6], #1 @ Addr für zu durchsuchender String für loop	
+	LDRB r3, [r6], #1 @ Addr fï¿½r zu durchsuchender String fï¿½r loop	
 	MOV r7, r1 @ Suchstring Backup
-	LDRB r5, [r1] @ Wert für Suchstring
+	LDRB r5, [r1] @ Wert fï¿½r Suchstring
 	
 	CMP r3, #0 @ Beim Ende vom zu durchsuchenden String ende
 	BEQ end
@@ -56,25 +57,25 @@ loop:
 	CMP r3, r5 @ Wenn Zeichen gleich, innerloop
 	BNE loop
 	
-	MOV r4, r6 @ r6 in r4 zwischenspeichern, damit beim nächsten sprung nicht r6 verändert wird
+	MOV r4, r6 @ r6 in r4 zwischenspeichern, damit beim nï¿½chsten sprung nicht r6 verï¿½ndert wird
 	
 innerloop:
 	LDRB r3, [r4], #1 @ Wert in r4 holen und r4 inkrementieren
-	LDRB r5, [r7, #1]! @ Nächsten Wert aus r7 holen und r7 inkrementieren
+	LDRB r5, [r7, #1]! @ Nï¿½chsten Wert aus r7 holen und r7 inkrementieren
 	
 	CMP r5, #0 @ Ende vom Suchstring, hit
 	BEQ hit
 	
 	CMP r3, r5 @ Zeichen gleich?
-	BEQ innerloop @ Ja: Nächste checken
+	BEQ innerloop @ Ja: Nï¿½chste checken
 	BNE loop @ Nein: Weitersuchen
 	
 hit:
-	ADD r2, r2, #1 @ Hitzähler hochzählen
+	ADD r2, r2, #1 @ Hitzï¿½hler hochzï¿½hlen
 	B loop
 	
 end:
-	MOV r0, r2 @ Hitzähler übergeben
+	MOV r0, r2 @ Hitzï¿½hler ï¿½bergeben
 	LDMFD r13!, {r4-r10}
 	
 	MOV pc, lr
