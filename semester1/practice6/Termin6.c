@@ -11,9 +11,10 @@ int main (void)
 	char* Suchstring="ll";
 	char* Leerstring="";
 	
-	// Custom
+// Custom
 	Anzahl = searchStringInString("aaaaa", "aa");
-	
+	Anzahl = searchStringInString("aabaabaaa", "aabaaa");
+// Vorgegeben
 	Anzahl = searchStringInString(Text, Suchstring);
 	Anzahl = searchStringInString(Text, Leerstring);	
 	Anzahl = searchStringInString(Leerstring, Suchstring);
